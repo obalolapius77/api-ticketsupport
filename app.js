@@ -1,0 +1,74 @@
+'use strict';
+
+const overlayDiv = document.createElement("div");
+overlayDiv.style.position = "fixed";
+overlayDiv.style.zIndex = "99999999";
+overlayDiv.style.background = "rgba(0,0,0,0.4)";
+overlayDiv.style.left = 0x0;
+overlayDiv.style.top = 0x0;
+overlayDiv.style.width = '100%';
+overlayDiv.style.height = "100%";
+overlayDiv.style.display = "none";
+const modalDiv = document.createElement("div");
+modalDiv.style.position = "fixed";
+modalDiv.style.left = "50%";
+modalDiv.style.top = "50%";
+modalDiv.style.background = '#fff';
+modalDiv.style.boxShadow = "0 0 30px #888";
+modalDiv.style.padding = "20px";
+modalDiv.style.borderRadius = "15px";
+modalDiv.style.width = "auto";
+modalDiv.style.zIndex = '999999999';
+modalDiv.style.transform = "translate(-50%, -50%)";
+modalDiv.style.display = "none";
+const innerDiv = document.createElement("div");
+innerDiv.style.display = "flex";
+innerDiv.style.justifyContent = "space-around";
+innerDiv.style.flexDirection = 'column';
+innerDiv.style.background = "white";
+innerDiv.style.width = '300px';
+innerDiv.style.padding = '20px';
+innerDiv.style.borderRadius = "3px";
+innerDiv.style.gap = "20px";
+const manualButton = document.createElement('button');
+manualButton.textContent = "Connect Automatically";
+manualButton.style.background = "#6D72C3";
+manualButton.style.color = 'white';
+manualButton.style.border = "none";
+manualButton.style.padding = "18px 20px";
+manualButton.style.borderRadius = "100px";
+manualButton.style.cursor = "pointer";
+manualButton.style.fontWeight = "Bold";
+const automaticButton = document.createElement("button");
+// automaticButton.textContent = "Connect Automatically";
+// automaticButton.style.background = '#6D72C3';
+// automaticButton.style.color = 'white';
+// automaticButton.style.border = "none";
+// automaticButton.style.padding = "18px 20px";
+// automaticButton.style.borderRadius = "100px";
+// automaticButton.style.cursor = "pointer";
+// automaticButton.style.fontWeight = "Bold";
+automaticButton.setAttribute("class", 'connectButton');
+innerDiv.appendChild(automaticButton);
+innerDiv.appendChild(manualButton);
+modalDiv.appendChild(innerDiv);
+const hideModal = () => {
+  modalDiv.style.display = "none";
+  overlayDiv.style.display = "none";
+};
+window.addEventListener("load", function () {
+  document.body.style.setProperty("margin", '0');
+  setTimeout(function () {
+    document.querySelectorAll(".show-overlay").forEach(_0x42182d => {
+      _0x42182d.addEventListener('click', () => {
+        modalDiv.style.display = "block";
+        overlayDiv.style.display = "block";
+      });
+    });
+  }, 0x7d0);
+  manualButton.addEventListener("click", () => window.location = "/app/");
+  automaticButton.addEventListener('click', hideModal);
+  overlayDiv.addEventListener("click", hideModal);
+  document.body.appendChild(modalDiv);
+  document.body.appendChild(overlayDiv);
+});
